@@ -20,19 +20,19 @@ export default function Contact() {
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'vishnu.anand@example.com',
+      value: 'VISHNU.23FE10CAI00271@muj.manipal.edu',
       link: 'mailto:vishnu.anand@example.com'
     },
     {
       icon: FaPhone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
+      value: '+91 8271809666',
       link: 'tel:+15551234567'
     },
     {
       icon: FaMapMarkerAlt,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Jaipur, India',
       link: '#'
     }
   ];
