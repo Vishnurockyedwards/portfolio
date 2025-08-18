@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaExternalLinkAlt, FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaDatabase } from "react-icons/fa";
+import { 
+  FaGithub, FaExternalLinkAlt, FaReact, FaJs, FaHtml5, FaCss3Alt, 
+  FaNodeJs, FaDatabase, FaCode 
+} from "react-icons/fa";
 import "../styles/Projects.css";
 
 export default function Projects() {
@@ -10,11 +13,11 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce application built with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.",
-      image: "https://via.placeholder.com/400x250/3b82f6/ffffff?text=E-Commerce",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
-      category: "fullstack",
+      title: "Portfolio Website",
+      description: "A modern, responsive portfolio website built with React and CSS animations. Features smooth transitions, dark mode toggle, and interactive elements.",
+      image: "https://via.placeholder.com/400x250/3b82f6/ffffff?text=Portfolio",
+      technologies: ["React", "CSS3", "JavaScript", "HTML5"],
+      category: "frontend",
       github: "https://github.com/",
       live: "https://example.com/",
       featured: true
@@ -24,7 +27,7 @@ export default function Projects() {
       title: "Task Management App",
       description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
       image: "https://via.placeholder.com/400x250/10b981/ffffff?text=Task+App",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
+      technologies: ["React", "Firebase", "CSS3", "JavaScript"],
       category: "frontend",
       github: "https://github.com/",
       live: "https://example.com/",
@@ -43,11 +46,11 @@ export default function Projects() {
     },
     {
       id: 4,
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React and CSS animations. Features smooth transitions and interactive elements.",
-      image: "https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Portfolio",
-      technologies: ["React", "CSS3", "Framer Motion"],
-      category: "frontend",
+      title: "E-Commerce Platform",
+      description: "A full-stack e-commerce application built with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.",
+      image: "https://via.placeholder.com/400x250/8b5cf6/ffffff?text=E-Commerce",
+      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      category: "fullstack",
       github: "https://github.com/",
       live: "https://example.com/",
       featured: false
@@ -84,11 +87,13 @@ export default function Projects() {
   ];
 
   useEffect(() => {
+    console.log('Projects component mounted');
     setIsVisible(true);
     filterProjects();
   }, [activeFilter]);
 
   const filterProjects = () => {
+    console.log('Filtering projects with:', activeFilter);
     let filtered = [];
     
     if (activeFilter === 'all') {
@@ -99,6 +104,7 @@ export default function Projects() {
       filtered = projects.filter(project => project.category === activeFilter);
     }
     
+    console.log('Filtered projects:', filtered);
     setFilteredProjects(filtered);
   };
 

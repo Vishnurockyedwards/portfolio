@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { 
   FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaDatabase, 
   FaGit, FaDocker, FaFigma, FaPython, FaJava, FaAws,
@@ -70,6 +70,64 @@ export default function Skills() {
     return '#6B7280';
   };
 
+  const SkillProgress = ({ level }) => {
+    const [value, setValue] = useState(0);
+    const containerRef = useRef(null);
+    const startedRef = useRef(false);
+
+    useEffect(() => {
+      const node = containerRef.current;
+      if (!node) return;
+
+      const durationMs = 1200;
+      let rafId = 0;
+      let startTime = 0;
+
+      const animate = (ts) => {
+        if (!startTime) startTime = ts;
+        const elapsed = ts - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setValue(level * eased);
+        if (progress < 1) {
+          rafId = requestAnimationFrame(animate);
+        }
+      };
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            rafId = requestAnimationFrame(animate);
+          }
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(node);
+      return () => {
+        observer.disconnect();
+        if (rafId) cancelAnimationFrame(rafId);
+      };
+    }, [level]);
+
+    const rounded = Math.round(value);
+    return (
+      <div ref={containerRef} className="skill-progress">
+        <div className="progress-bar">
+          <div
+            className="progress-fill"
+            style={{
+              width: `${rounded}%`,
+              backgroundColor: getSkillColor(level)
+            }}
+          ></div>
+        </div>
+        <span className="progress-text">{rounded}%</span>
+      </div>
+    );
+  };
+
   return (
     <div className="skills-container">
       <section className="skills-hero">
@@ -119,18 +177,7 @@ export default function Skills() {
                 </div>
               </div>
               
-              <div className="skill-progress">
-                <div className="progress-bar">
-                  <div 
-                    className="progress-fill"
-                    style={{ 
-                      width: `${skill.level}%`,
-                      backgroundColor: getSkillColor(skill.level)
-                    }}
-                  ></div>
-                </div>
-                <span className="progress-text">{skill.level}%</span>
-              </div>
+              <SkillProgress level={skill.level} />
             </div>
           ))}
         </div>
