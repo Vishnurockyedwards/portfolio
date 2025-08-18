@@ -62,6 +62,21 @@ export default function Skills() {
     { name: 'TryHackMe', subtext: 'Top 15% Global', icon: SiTryhackme, color: '#B30000', url: 'https://tryhackme.com/p/your_username' }
   ];
 
+  const loopLogos = [
+    { icon: FaReact, color: '#61DAFB' },
+    { icon: FaJs, color: '#F7DF1E' },
+    { icon: FaHtml5, color: '#E34F26' },
+    { icon: FaCss3Alt, color: '#1572B6' },
+    { icon: FaNodeJs, color: '#339933' },
+    { icon: FaDatabase, color: '#47A248' },
+    { icon: FaGit, color: '#F05032' },
+    { icon: FaDocker, color: '#2496ED' },
+    { icon: FaFigma, color: '#F24E1E' },
+    { icon: FaPython, color: '#3776AB' },
+    { icon: FaJava, color: '#ED8B00' },
+    { icon: FaAws, color: '#FF9900' }
+  ];
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -196,30 +211,24 @@ export default function Skills() {
         ) : (
           <div className="skills-grid">
             {codingProfiles.map((p, index) => (
-              <a
+              <div
                 key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link"
-                aria-label={`Open ${p.name} profile`}
+                className="skill-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="skill-card">
-                  <div className="skill-header">
-                    <div 
-                      className="skill-icon"
-                      style={{ backgroundColor: `${p.color}20`, color: p.color }}
-                    >
-                      <p.icon />
-                    </div>
-                    <div className="skill-info">
-                      <h3 className="skill-name">{p.name}</h3>
-                      <span className="profile-subtext">{p.subtext}</span>
-                    </div>
+                <div className="skill-header">
+                  <div 
+                    className="skill-icon"
+                    style={{ backgroundColor: `${p.color}20`, color: p.color }}
+                  >
+                    <p.icon />
+                  </div>
+                  <div className="skill-info">
+                    <h3 className="skill-name">{p.name}</h3>
+                    <span className="profile-subtext">{p.subtext}</span>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         )}
@@ -273,6 +282,20 @@ export default function Skills() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Thin logo ticker above footer */}
+      <section className="logo-ticker" aria-label="Technology logos">
+        <div className="ticker-content">
+          {loopLogos.concat(loopLogos).map((item, index) => {
+            const IconComp = item.icon;
+            return (
+              <span key={`logo-${index}`} className="ticker-item" style={{ color: item.color }}>
+                <IconComp />
+              </span>
+            );
+          })}
         </div>
       </section>
     </div>

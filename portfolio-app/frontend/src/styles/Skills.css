@@ -67,6 +67,12 @@
   color: var(--accent-color);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="%23A3E635" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="5" stroke="%23A3E635" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="%23A3E635" stroke-width="2"/><line x1="1" y1="12" x2="5" y2="12" stroke="%23A3E635" stroke-width="2"/><line x1="19" y1="12" x2="23" y2="12" stroke="%23A3E635" stroke-width="2"/></svg>') 12 12, crosshair;
+}
+
+/* Target cursor on any button inside skills page */
+.skills-container button:hover {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="%23A3E635" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="5" stroke="%23A3E635" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="%23A3E635" stroke-width="2"/><line x1="1" y1="12" x2="5" y2="12" stroke="%23A3E635" stroke-width="2"/><line x1="19" y1="12" x2="23" y2="12" stroke="%23A3E635" stroke-width="2"/></svg>') 12 12, crosshair;
 }
 
 .category-button.active {
@@ -389,3 +395,33 @@
 [data-theme="dark"] .progress-fill::after {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
 } 
+
+/* Thin logos ticker above footer */
+.logo-ticker {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--primary-bg);
+  overflow: hidden;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-content {
+  display: flex;
+  gap: 2rem;
+  animation: ticker-scroll 18s linear infinite;
+  width: max-content;
+  padding-left: 100%;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.25rem;
+  opacity: 0.85;
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
