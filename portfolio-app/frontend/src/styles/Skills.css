@@ -105,6 +105,14 @@
   border-color: var(--accent-color);
 }
 
+/* Make whole card clickable when wrapped in an anchor */
+.card-link {
+  text-decoration: none;
+}
+.card-link .skill-card {
+  height: 100%;
+}
+
 /* Skill Header */
 .skill-header {
   display: flex;
@@ -145,6 +153,11 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.profile-subtext {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
 /* Skill Progress */

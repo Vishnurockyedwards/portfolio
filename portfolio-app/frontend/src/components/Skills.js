@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { 
   FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaDatabase, 
   FaGit, FaDocker, FaFigma, FaPython, FaJava, FaAws,
-  FaCode, FaPalette, FaRocket, FaUsers, FaLightbulb
+  FaCode, FaPalette, FaRocket, FaUsers, FaLightbulb, FaTrophy
 } from "react-icons/fa";
+import { 
+  SiLeetcode, SiCodeforces, SiCodechef, SiGeeksforgeeks, SiTryhackme
+} from "react-icons/si";
 import "../styles/Skills.css";
 
 export default function Skills() {
@@ -14,7 +17,8 @@ export default function Skills() {
     { id: 'frontend', label: 'Frontend', icon: FaCode },
     { id: 'backend', label: 'Backend', icon: FaRocket },
     { id: 'design', label: 'Design', icon: FaPalette },
-    { id: 'tools', label: 'Tools', icon: FaUsers }
+    { id: 'tools', label: 'Tools', icon: FaUsers },
+    { id: 'profiles', label: 'Coding Profiles', icon: FaTrophy }
   ];
 
   const skills = {
@@ -49,6 +53,14 @@ export default function Skills() {
       { name: 'Jest', level: 75, icon: FaCode, color: '#C21325' }
     ]
   };
+
+  const codingProfiles = [
+    { name: 'LeetCode', subtext: '300+ problems solved', icon: SiLeetcode, color: '#FFA116', url: 'https://leetcode.com/u/the10thvishnu/' },
+    { name: 'CodeForces', subtext: 'Current Rating: 1020', icon: SiCodeforces, color: '#1F8ACB', url: 'https://codeforces.com/profile/your_handle' },
+    { name: 'CodeChef', subtext: 'Current Rating: 1409 · Div 3', icon: SiCodechef, color: '#5B4638', url: 'https://www.codechef.com/users/your_username' },
+    { name: 'GeeksForGeeks', subtext: 'Practice & Articles', icon: SiGeeksforgeeks, color: '#0F9D58', url: 'https://auth.geeksforgeeks.org/user/your_username/' },
+    { name: 'TryHackMe', subtext: 'Top 15% Global', icon: SiTryhackme, color: '#B30000', url: 'https://tryhackme.com/p/your_username' }
+  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -157,30 +169,60 @@ export default function Skills() {
           })}
         </div>
 
-        <div className="skills-grid">
-          {skills[activeCategory].map((skill, index) => (
-            <div
-              key={skill.name}
-              className="skill-card"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="skill-header">
-                <div 
-                  className="skill-icon"
-                  style={{ backgroundColor: `${skill.color}20`, color: skill.color }}
-                >
-                  <skill.icon />
+        {activeCategory !== 'profiles' ? (
+          <div className="skills-grid">
+            {skills[activeCategory].map((skill, index) => (
+              <div
+                key={skill.name}
+                className="skill-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="skill-header">
+                  <div 
+                    className="skill-icon"
+                    style={{ backgroundColor: `${skill.color}20`, color: skill.color }}
+                  >
+                    <skill.icon />
+                  </div>
+                  <div className="skill-info">
+                    <h3 className="skill-name">{skill.name}</h3>
+                    <span className="skill-level">{getSkillLevel(skill.level)}</span>
+                  </div>
                 </div>
-                <div className="skill-info">
-                  <h3 className="skill-name">{skill.name}</h3>
-                  <span className="skill-level">{getSkillLevel(skill.level)}</span>
-                </div>
+                <SkillProgress level={skill.level} />
               </div>
-              
-              <SkillProgress level={skill.level} />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="skills-grid">
+            {codingProfiles.map((p, index) => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link"
+                aria-label={`Open ${p.name} profile`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="skill-card">
+                  <div className="skill-header">
+                    <div 
+                      className="skill-icon"
+                      style={{ backgroundColor: `${p.color}20`, color: p.color }}
+                    >
+                      <p.icon />
+                    </div>
+                    <div className="skill-info">
+                      <h3 className="skill-name">{p.name}</h3>
+                      <span className="profile-subtext">{p.subtext}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="skills-overview">
