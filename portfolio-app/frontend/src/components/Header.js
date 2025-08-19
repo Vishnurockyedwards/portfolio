@@ -14,6 +14,7 @@ const navLinks = [
 export default function Header({ darkMode, setDarkMode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -34,16 +35,24 @@ export default function Header({ darkMode, setDarkMode }) {
     setIsMobileMenuOpen(false);
   };
 
+  const toggleNav = () => {
+    setIsNavVisible(!isNavVisible);
+  };
+
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         <div className="logo">
-          <a href="/" className="logo-link">
+          <button 
+            className="logo-toggle" 
+            onClick={toggleNav}
+            aria-label={isNavVisible ? 'Hide navigation' : 'Show navigation'}
+          >
             <span className="logo-text">VA</span>
-          </a>
+          </button>
         </div>
 
-        <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
+        <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''} ${isNavVisible ? 'nav-visible' : 'nav-hidden'}`}>
           <ul className="nav-list">
             {navLinks.map((link) => (
               <li key={link.name} className="nav-item">
@@ -93,7 +102,7 @@ export default function Header({ darkMode, setDarkMode }) {
           <button
             className="theme-toggle"
             onClick={toggleTheme}
-            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={darkMode ? 'Switch to light mode' : 'Switch to light mode'}
           >
             {darkMode ? <FaSun /> : <FaMoon />}
           </button>

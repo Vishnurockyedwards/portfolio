@@ -410,7 +410,7 @@
 .ticker-content {
   display: flex;
   gap: 2rem;
-  animation: ticker-scroll 18s linear infinite;
+  animation: ticker-scroll 50s linear infinite;
   width: max-content;
   padding-left: 100%;
 }
