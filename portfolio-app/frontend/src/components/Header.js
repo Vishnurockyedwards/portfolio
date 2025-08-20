@@ -71,7 +71,7 @@ export default function Header({ darkMode, setDarkMode }) {
         <div className="header-actions">
           <div className="social-links">
             <a
-              href="https://github.com/"
+              href="https://github.com/Vishnurockyedwards"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -80,7 +80,7 @@ export default function Header({ darkMode, setDarkMode }) {
               <FaGithub />
             </a>
             <a
-              href="https://linkedin.com/"
+              href="https://www.linkedin.com/in/vishnuanand75/"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -89,7 +89,7 @@ export default function Header({ darkMode, setDarkMode }) {
               <FaLinkedin />
             </a>
             <a
-              href="https://twitter.com/"
+              href="https://x.com/the10thvishnu"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"

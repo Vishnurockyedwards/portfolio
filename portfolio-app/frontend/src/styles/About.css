@@ -380,6 +380,267 @@ body {
   margin: 0;
 }
 
+/* Certifications Tab */
+.certifications-container {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.certifications-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.certifications-track {
+  display: flex;
+  gap: 2rem;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.certifications-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Certificate Card Variables */
+:root {
+  --card-width: 320px;
+  --card-height: 400px;
+  --transition-slow: 0.3s ease;
+}
+
+/* Deconstructed Card */
+.deconstructed-card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform var(--transition-slow);
+  contain: layout style paint;
+}
+
+.deconstructed-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+}
+
+.card-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.card-background {
+  z-index: 10;
+  overflow: hidden;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-frame {
+  z-index: 30;
+  pointer-events: none;
+}
+
+.frame-path {
+  stroke-dashoffset: 1520;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.17, 1, 0.3, 1);
+}
+
+.card-frame {
+  overflow: hidden;
+}
+
+.card-frame svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.deconstructed-card:hover .frame-path {
+  stroke-dashoffset: 0;
+}
+
+.card-content {
+  z-index: 20;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 100%;
+}
+
+.content-fragment {
+  flex-shrink: 0;
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cert-indicator {
+  width: 4px;
+  height: 32px;
+  background: white;
+  transform: scaleY(0.5);
+  transform-origin: center top;
+  transition: all 0.5s ease;
+}
+
+.deconstructed-card:hover .cert-indicator {
+  transform: scaleY(1);
+}
+
+.cert-provider {
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: translateX(-5px);
+  opacity: 0.6;
+  transition: all 0.5s ease;
+}
+
+.deconstructed-card:hover .cert-provider {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.cert-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  font-family: 'Arial Black', sans-serif;
+  transform: translateY(10px);
+  opacity: 0.7;
+  transition: all 0.5s ease;
+}
+
+.deconstructed-card:hover .cert-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cert-subtitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transform: translateY(10px);
+  opacity: 0.5;
+  transition: all 0.5s ease;
+  margin-bottom: 1rem;
+}
+
+.deconstructed-card:hover .cert-subtitle {
+  transform: translateY(0);
+  opacity: 0.8;
+}
+
+.cert-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.cert-icon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+  transition: all 0.5s ease;
+}
+
+.deconstructed-card:hover .cert-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.cert-description {
+  margin-bottom: 1rem;
+}
+
+.cert-description p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-family: 'Georgia', serif;
+  transform: translateY(10px);
+  opacity: 0.6;
+  transition: all 0.5s ease;
+  margin: 0;
+}
+
+.deconstructed-card:hover .cert-description p {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+.cert-action {
+  margin-top: auto;
+}
+
+.cert-button {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.button-bg {
+  position: absolute;
+  inset: 0;
+  background: white;
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s ease;
+}
+
+.deconstructed-card:hover .button-bg {
+  transform: scaleX(1);
+}
+
+.cert-button span {
+  position: relative;
+  display: block;
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  color: white;
+  transform: translateX(-5px);
+  opacity: 0.7;
+  transition: all 0.5s ease;
+}
+
+.deconstructed-card:hover .cert-button span {
+  transform: translateX(0);
+  opacity: 1;
+  color: #333;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .about-content {
@@ -427,6 +688,15 @@ body {
   .values-grid {
     grid-template-columns: 1fr;
   }
+
+  :root {
+    --card-width: 280px;
+    --card-height: 360px;
+  }
+
+  .certifications-track {
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -441,5 +711,18 @@ body {
 
   .story-highlights {
     grid-template-columns: 1fr;
+  }
+
+  :root {
+    --card-width: 260px;
+    --card-height: 340px;
+  }
+
+  .cert-title {
+    font-size: 1.25rem;
+  }
+
+  .cert-icon {
+    font-size: 2rem;
   }
 }

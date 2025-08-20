@@ -21,13 +21,13 @@ export default function Contact() {
       icon: FaEnvelope,
       label: 'Email',
       value: 'VISHNU.23FE10CAI00271@muj.manipal.edu',
-      link: 'mailto:vishnu.anand@example.com'
+      link: 'mailto:VISHNU.23FE10CAI00271@muj.manipal.edu'
     },
     {
       icon: FaPhone,
       label: 'Phone',
       value: '+91 8271809666',
-      link: 'tel:+15551234567'
+      link: 'tel:+8271809666'
     },
     {
       icon: FaMapMarkerAlt,

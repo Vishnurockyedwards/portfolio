@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaHeart, FaArrowUp } from 'react-icons/fa';
 import "../styles/Footer.css";
 
@@ -11,6 +11,38 @@ function Footer() {
   };
 
   const currentYear = new Date().getFullYear();
+
+  // Rotating signature functionality
+  useEffect(() => {
+    const initEmblem = (el, str) => {
+      const element = document.querySelector(el);
+      if (!element) return;
+
+      const text = str ? str : element.innerHTML;
+      element.innerHTML = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const letter = text[i];
+        const span = document.createElement('span');
+        const node = document.createTextNode(letter);
+        const r = (360/text.length)*(i);
+        const x = (Math.PI/text.length).toFixed(0) * (i);
+        const y = (Math.PI/text.length).toFixed(0) * (i);
+
+        span.appendChild(node);
+        span.style.webkitTransform = `rotateZ(${r}deg) translate3d(${x}px,${y}px,0)`;
+        span.style.transform = `rotateZ(${r}deg) translate3d(${x}px,${y}px,0)`;
+        element.appendChild(span);
+      }
+    };
+
+    // Initialize the emblem after component mounts
+    const timer = setTimeout(() => {
+      initEmblem('.emblem');
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <footer className="footer">
@@ -71,18 +103,21 @@ function Footer() {
         <div className="footer-bottom">
           <div className="footer-copyright">
             <p>
-              &copy; {currentYear} Vishnu Anand. Made with <FaHeart className="heart-icon" /> 
+              &copy; {currentYear} Vishnu Anand. Made with <FaHeart className="heart-icon" />
               and lots of coffee ☕
             </p>
           </div>
-          
-          <button 
-            className="scroll-to-top"
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-          >
-            <FaArrowUp />
-          </button>
+
+          <div className="footer-right">
+            <div className="emblem">Vishnu*Anand*</div>
+            <button
+              className="scroll-to-top"
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+            >
+              <FaArrowUp />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

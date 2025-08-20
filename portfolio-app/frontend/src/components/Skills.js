@@ -55,11 +55,11 @@ export default function Skills() {
   };
 
   const codingProfiles = [
-    { name: 'LeetCode', subtext: '300+ problems solved', icon: SiLeetcode, color: '#FFA116', url: 'https://leetcode.com/u/the10thvishnu/' },
-    { name: 'CodeForces', subtext: 'Current Rating: 1020', icon: SiCodeforces, color: '#1F8ACB', url: 'https://codeforces.com/profile/your_handle' },
-    { name: 'CodeChef', subtext: 'Current Rating: 1409 · Div 3', icon: SiCodechef, color: '#5B4638', url: 'https://www.codechef.com/users/your_username' },
-    { name: 'GeeksForGeeks', subtext: 'Practice & Articles', icon: SiGeeksforgeeks, color: '#0F9D58', url: 'https://auth.geeksforgeeks.org/user/your_username/' },
-    { name: 'TryHackMe', subtext: 'Top 15% Global', icon: SiTryhackme, color: '#B30000', url: 'https://tryhackme.com/p/your_username' }
+    { name: 'LeetCode', subtext: '500+ problems solved', icon: SiLeetcode, color: '#FFA116', url: 'https://leetcode.com/u/the10thvishnu/' },
+    //{ name: 'CodeForces', subtext: 'Current Rating: 1020', icon: SiCodeforces, color: '#1F8ACB', url: 'https://codeforces.com/profile/your_handle' },
+   // { name: 'CodeChef', subtext: 'Current Rating: 1409 · Div 3', icon: SiCodechef, color: '#5B4638', url: 'https://www.codechef.com/users/your_username' },
+   // { name: 'GeeksForGeeks', subtext: 'Practice & Articles', icon: SiGeeksforgeeks, color: '#0F9D58', url: 'https://auth.geeksforgeeks.org/user/your_username/' },
+    //{ name: 'TryHackMe', subtext: 'Top 15% Global', icon: SiTryhackme, color: '#B30000', url: 'https://tryhackme.com/p/your_username' }
   ];
 
   const loopLogos = [
