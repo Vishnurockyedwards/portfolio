@@ -123,6 +123,42 @@
   font-weight: 500;
 }
 
+/* Resume Download */
+.resume-download {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.resume-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.resume-btn:active {
+  transform: translateY(0);
+}
+
+.resume-btn svg {
+  font-size: 1rem;
+}
+
 /* Social Links */
 .social-links h3 {
   font-size: 1.25rem;

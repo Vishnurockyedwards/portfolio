@@ -8,6 +8,7 @@ export default function Home() {
     const [isVisible, setIsVisible] = useState(false);
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [isTyping, setIsTyping] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     const roles = [
         "Frontend Developer",
@@ -36,9 +37,44 @@ export default function Home() {
         history.push(path);
     };
 
-    const handleDownloadResume = () => {
-        // Add your resume download logic here
-        console.log("Downloading resume...");
+    const handleDownloadResume = async () => {
+        setIsDownloading(true);
+        try {
+            // First, try to fetch the file to check if it exists
+            const response = await fetch('/Vishnu_Anand_resume.pdf');
+
+            if (!response.ok) {
+                throw new Error('Resume file not found');
+            }
+
+            // Get the blob data
+            const blob = await response.blob();
+
+            // Create object URL
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element and trigger download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Vishnu_Anand_Resume.pdf';
+            link.style.display = 'none';
+
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Clean up the object URL
+            window.URL.revokeObjectURL(url);
+
+            console.log("Resume download completed successfully");
+        } catch (error) {
+            console.error('Error downloading resume:', error);
+            // Fallback: open in new tab
+            window.open('/Vishnu_Anand_resume.pdf', '_blank');
+        } finally {
+            setIsDownloading(false);
+        }
     };
 
     return (
@@ -77,12 +113,13 @@ export default function Home() {
                                 View My Work
                             </button>
                             
-                            <button 
+                            <button
                                 className="btn btn-secondary"
                                 onClick={handleDownloadResume}
+                                disabled={isDownloading}
                             >
                                 <FaDownload />
-                                Download Resume
+                                {isDownloading ? 'Downloading...' : 'Download Resume'}
                             </button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { 
-  FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, 
-  FaLinkedin, FaTwitter, FaPaperPlane, FaCheckCircle 
+import {
+  FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub,
+  FaLinkedin, FaTwitter, FaPaperPlane, FaCheckCircle, FaDownload
 } from "react-icons/fa";
 import "../styles/Contact.css";
 
@@ -111,21 +111,58 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Here you would typically send the data to your backend
     console.log('Form submitted:', formData);
+  };
+
+  const handleDownloadResume = async () => {
+    try {
+      // First, try to fetch the file to check if it exists
+      const response = await fetch('/Vishnu_Anand_resume.pdf');
+
+      if (!response.ok) {
+        throw new Error('Resume file not found');
+      }
+
+      // Get the blob data
+      const blob = await response.blob();
+
+      // Create object URL
+      const url = window.URL.createObjectURL(blob);
+
+      // Create a link element and trigger download
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Vishnu_Anand_Resume.pdf';
+      link.style.display = 'none';
+
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Clean up the object URL
+      window.URL.revokeObjectURL(url);
+
+      console.log("Resume download completed successfully");
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback: open in new tab
+      window.open('/Vishnu_Anand_resume.pdf', '_blank');
+    }
   };
 
   return (
@@ -171,6 +208,17 @@ export default function Contact() {
                   </a>
                 );
               })}
+            </div>
+
+            <div className="resume-download">
+              <button
+                className="resume-btn"
+                onClick={handleDownloadResume}
+                aria-label="Download Resume"
+              >
+                <FaDownload />
+                <span>Download Resume</span>
+              </button>
             </div>
 
             <div className="social-links">

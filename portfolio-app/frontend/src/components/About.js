@@ -106,8 +106,8 @@ export default function About() {
     },
     {
       id: 3,
-      title: 'Programming &',
-      subtitle: 'Data Structures • 2023',
+      title: ' Design and ',
+      subtitle: 'analysis of algorithms • 2025',
       provider: 'NPTEL',
       description: 'Advanced programming concepts using Python with focus on data structures and algorithmic problem solving.',
       icon: '📱',
